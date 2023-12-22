@@ -1,5 +1,5 @@
 ---
-title: 'Cross_Filter'
+title: '推荐算法1：协同过滤'
 date: 2023-12-22
 permalink: /posts/2023/12/Cross_Filter/
 tags:
