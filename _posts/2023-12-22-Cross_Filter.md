@@ -11,7 +11,6 @@ tags:
 1. 时间点：协同过滤算法最早在2003年由Amazon公司发表的论文《Amazon.com Recommenders Item-to-Item
    Collaborative Filtering》中被首次提出，但是在更早的1992年，Xerox便已经在邮件过滤系统中研究和应用协同过滤的相关算法
 
-   
 
    协同过滤的基本原理是基于一种直观的，符合人们普遍认知的一种思维模式来进行相关物品（item）对相关用户（user）的推荐：
 
