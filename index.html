@@ -178,7 +178,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ol>
+        <span id="more"></span>
+<ol>
 <li>有效把握终值峰值定律</li>
 </ol>
 <p>在学习或者做事的时间段内人的情绪会像函数一样上下波动，波峰为极高的正向反馈，谷底为极低的负向反馈。<strong>人们对一切人、事、物的感受，由峰值和终值两个因素决定。峰值是指这段体验中的最高峰，包括正向和负向；终值是指这段体验结束时给你的感觉。</strong></p>
@@ -247,7 +248,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>1、函数装饰器（不带参数）</p>
+        <span id="more"></span>
+<p>1、函数装饰器（不带参数）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行前的一些操作&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行后的一些操作&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@my_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;status:success&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用装饰器</span></span><br><span class="line">result = say_hello(<span class="string">&quot;Alice&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
 
 <p>2、函数装饰器（带参数）</p>
@@ -294,7 +296,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>单例设计模式含义是在程序中使用单例模式设计的类只能有唯一一个实例，并且提供一个全局接口供其他程序访问。</p>
+        <span id="more"></span>
+<p>单例设计模式含义是在程序中使用单例模式设计的类只能有唯一一个实例，并且提供一个全局接口供其他程序访问。</p>
 <p>常用场景：<br>数据库连接池、日志系统</p>
 <p>实现方式1：使用import导入实例</p>
 <p>python中这是最容易实现的方式</p>
@@ -340,7 +343,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>工厂模式简单来说就是将新对象的创建过程进行封装，只需要传递config进入工厂，就可以创建符合要求的目标对象。 本质上是不对外暴露对象的创建过程。是一种创建型的设计模式。</p>
+        <span id="more"></span>
+<p>工厂模式简单来说就是将新对象的创建过程进行封装，只需要传递config进入工厂，就可以创建符合要求的目标对象。 本质上是不对外暴露对象的创建过程。是一种创建型的设计模式。</p>
 <p>优点：（1）解耦（2）可维护（3）遵守开闭原则</p>
 <p>案例一：简单工厂模式</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABC, abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="comment"># 产品接口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">animal</span>(<span class="title class_ inherited__">ABC</span>):</span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 具体产品</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">cat</span>(<span class="title class_ inherited__">animal</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Cat!&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">dog</span>(<span class="title class_ inherited__">animal</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Dog!&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工厂的具体实现</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal_factory</span>:</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">produce_animals</span>(<span class="params">animal_type</span>):</span><br><span class="line">        <span class="keyword">if</span> animal_type == <span class="string">&#x27;cat&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> cat()</span><br><span class="line">        <span class="keyword">elif</span> animal_type == <span class="string">&#x27;dog&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> dog()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Invalid animal type&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#创建工厂对象</span></span><br><span class="line">    factory = Animal_factory()</span><br><span class="line"></span><br><span class="line">    cat = factory.produce_animals(<span class="string">&#x27;cat&#x27;</span>)</span><br><span class="line">    dog = factory.produce_animals(<span class="string">&#x27;dog&#x27;</span>)</span><br><span class="line">    cat.speak()</span><br><span class="line">    dog.speak()</span><br></pre></td></tr></table></figure>
@@ -393,16 +397,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>最近又开始在自学一些新的技术跟理论，在学习的过程中随着自我总结以及记录学习过程逐渐总结出一些小的规律来提高效率。只能说在这个争分夺秒的时代，人人都知道要提升进步，那么效率的高低就决定了人与人之间的差距。</p>
-<p>问题1：看书总是看了后面忘了前面，看了就忘，完全抓不住整本书或者文档的知识框架或脉络，导致知识体系零碎化，难以利用。<br>方案：</p>
-<p>这个问题我个人经常遇到，甚至有很长一段时间非常苦恼。尤其是面对好几百页的技术文档或者教科书来说，完全读一遍本身就会花费很多时间，以前我可能尝试去二刷甚至三刷，但是所带来的收益完全比不过学习中产生的倦怠、烦躁感，很容易让人想要放弃。</p>
-<p>我现在总结出了一个心法，也受到很多我之前读过的哲学书的启发，一个是主动把握住主要和次要关系，二个是主动把握住抽象与具体的关系。</p>
-<p>首先是主动，这意味着在看书的时候我需要主动去针对每一个知识点进行思考和筛选，过程之中本身就在进行思维训练。越是主动进行思考，越是能更加方便和快速地将陌生理论纳入到自己已有的知识体系。然后是主要和次要关系，“主要“意味着某个理论或者知识点对于整个体系来说占据较大的比重，而“次要”意味着某个理论在体系中并不起眼。在这里就需要判断一个关键问题：是否篇幅占比多的内容一定是主要内容？</p>
-<p>我觉得答案是否定的，尤其是对于国内的有些教材来说，它们很喜欢将一个基本用不太上的点展开得很细，导致初学者很难把握究竟哪一部分算是主要部分。</p>
-<p>我觉得需要认清自己的需求，如果是为了考试或者通过考核，那么能够帮你拿最多分的部分就是主要内容。如果是为了提高工程能力或者科研能力，那么业界、学界经常用的，研究最多的就是主要内容。先降低信息的输入密度，在建立起初步的知识体系后再进行后续补充，就会让脑力能够缓步适应新的节奏。简而言之：快就是慢、慢就是快。</p>
-<p>第二点相对于第一点，更加倾向于对于知识体系的纵向分析。我个人认为知识是需要分层理解的，先从最顶上最抽象的概念去学习，再一层层往下理解上一层的具体实践，最后再到最低层最细节的落地和实现，也就是经常说的“把书读厚”。鉴于现实世界两个相似的条件下产生的结果可能天差地别，只要人们想，这个具体的细节可以非常的细，因此通过抽象概要把握细节是非常有必要的。</p>
-<p>在从上到下把握住整个清晰的脉络后，可以尝试从自己的应用和实践来构建自己的抽象概念，从而形成自己的知识体系。</p>
-
+        <p><em>只要学不死，就往死里学</em></p>
+        
+          <p class="article-more-link">
+            <a href="/2026/01/25/%E5%85%B3%E4%BA%8E%E8%87%AA%E5%AD%A6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
