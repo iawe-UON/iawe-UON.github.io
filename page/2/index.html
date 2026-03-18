@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-装饰器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/01/29/%E8%A3%85%E9%A5%B0%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2026-01-29T15:41:33.000Z" itemprop="datePublished">2026-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/01/29/%E8%A3%85%E9%A5%B0%E5%99%A8/">装饰器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+<p>1、函数装饰器（不带参数）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_decorator</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行前的一些操作&quot;</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;函数执行后的一些操作&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@my_decorator</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;status:success&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用装饰器</span></span><br><span class="line">result = say_hello(<span class="string">&quot;Alice&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>2、函数装饰器（带参数）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">repeats</span>(<span class="params">times</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(times):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;第<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>次输出：\n&quot;</span>)</span><br><span class="line">                result = func(*args, **kwargs)</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="meta">@repeats(<span class="params">times=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">say_hello</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line"></span><br><span class="line">say_hello()</span><br></pre></td></tr></table></figure>
+
+<p>3、类装饰器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/01/29/%E8%A3%85%E9%A5%B0%E5%99%A8/" data-id="cuidy-JPqd8lj2e1ESUrncOtI" data-title="装饰器" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-单例设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/01/28/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
@@ -279,7 +327,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 20px;">从零开始学架构设计</a> <a href="/tags/%E5%9F%BA%E6%93%8D%E5%A4%87%E5%BF%98%E5%BD%95/" style="font-size: 15px;">基操备忘录</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" style="font-size: 20px;">学习心得</a> <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" style="font-size: 10px;">碎碎念</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%AB%98%E5%B1%B1%E4%BB%B0%E6%AD%A2/" style="font-size: 10px;">高山仰止</a>
+      <a href="/tags/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 20px;">从零开始学架构设计</a> <a href="/tags/%E5%9F%BA%E6%93%8D%E5%A4%87%E5%BF%98%E5%BD%95/" style="font-size: 20px;">基操备忘录</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" style="font-size: 20px;">学习心得</a> <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" style="font-size: 10px;">碎碎念</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 20px;">设计模式</a> <a href="/tags/%E9%AB%98%E5%B1%B1%E4%BB%B0%E6%AD%A2/" style="font-size: 10px;">高山仰止</a>
     </div>
   </div>
 
@@ -301,6 +349,10 @@
       <ul>
         
           <li>
+            <a href="/2026/03/18/python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80/">python爬虫基础</a>
+          </li>
+        
+          <li>
             <a href="/2026/03/14/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8C%81%E4%B9%85%E5%8C%96%E7%AD%96%E7%95%A5/">定时任务持久化策略</a>
           </li>
         
@@ -314,10 +366,6 @@
         
           <li>
             <a href="/2026/02/12/%E5%BC%82%E5%9C%B0%E5%A4%9A%E6%B4%BB%E6%A6%82%E5%BF%B5/">异地多活概念</a>
-          </li>
-        
-          <li>
-            <a href="/2026/02/10/%E6%AF%95%E7%8E%84%E8%AF%AD%E5%BD%95/">毕玄语录</a>
           </li>
         
       </ul>
