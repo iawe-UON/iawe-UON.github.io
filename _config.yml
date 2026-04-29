@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Kalvin Li的技术笔记
 subtitle: ''
-description: ''
+description: 'Kalvin Li的博客'
 keywords:
-author: John Doe
-language: en
+author: Kalvin Li
+language: zh-CN
 timezone: ''
 
 # URL
