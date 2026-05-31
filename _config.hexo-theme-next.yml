@@ -1,0 +1,14 @@
+# NexT theme overrides.
+# Keep comment settings outside the theme directory to reduce upgrade conflicts.
+
+comments:
+  active: utterances
+  nav:
+    utterances:
+      text: GitHub Comments
+
+utterances:
+  enable: true
+  repo: iawe-UON/iawe-UON.github.io
+  issue_term: pathname
+  theme: preferred-color-scheme
