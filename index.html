@@ -199,7 +199,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-06-02 08:39:38" itemprop="dateModified" datetime="2026-06-02T08:39:38+08:00">2026-06-02</time>
+      <time title="修改时间：2026-06-02 08:41:54" itemprop="dateModified" datetime="2026-06-02T08:41:54+08:00">2026-06-02</time>
     </span>
 
   
@@ -236,7 +236,13 @@
 <p>可以看到该方法通过从Configuration中拿取字段名，然后从环境变量或者model_fields中获取对应字段名的值，最后将字段名和值放入Configuration(…)构造配置对象。</p>
 <p>比较难以理解的是<em>field_names &#x3D; list(cls.model_fields.keys())</em>，model_fields这个关键字可能让很多人摸不着头脑，实际上在pydanticV2中，所有继承BaseModel的类都会自动拥有一个类属性:model_fields.它记录了这个模型声明过的字段及其元信息，比如字段名、默认值、类型、Field(…) 里的 metadata 等</p>
 <p>简单来说就是Pydantic自动生成的”字段注册表”，通过这种方式，当需要加入一条新的字段时，直接往Configure中传递新字段的值即可，不必再修改from_runnable_config()中的内容。</p>
-<p>整体的流程大意如下：<br>-自动拿到 Configuration 所有字段名。<br>-对每个字段，先从环境变量里读，比如 RESEARCH_MODEL。<br>-如果环境变量没有，就从 LangGraph runtime config 里读，比如 config[“configurable”][“research_model”]。<br>-最后把读到的值传给 Configuration(…) 构造配置对象。</p>
+<p>整体的流程大意如下：</p>
+<ul>
+<li>自动拿到 Configuration 所有字段名。</li>
+<li>对每个字段，先从环境变量里读，比如 RESEARCH_MODEL。</li>
+<li>如果环境变量没有，就从 LangGraph runtime config 里读，比如 config[“configurable”][“research_model”]。</li>
+<li>最后把读到的值传给 Configuration(…) 构造配置对象。</li>
+</ul>
 <p>所以它的作用是：让配置加载逻辑自动跟随 Configuration 类的字段变化。</p>
 
       
