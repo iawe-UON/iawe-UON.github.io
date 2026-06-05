@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"iawe-uon.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":{"utterances":{"text":"GitHub Comments"}},"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="open_deep_research源码学习（1）学习目的：以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程 整体概述：open_deep_research是基于Langgraph的一个开源项目，有文献检索，报告生成的功能。 该Agent通过编排各个有独立功能的节点或者子图来进行功能的实现，流程如下： 12">
+    <meta name="description" content="open_deep_research源码学习（1）学习目的：以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="源码学习-open_deep_research（1）">
 <meta property="og:url" content="https://iawe-uon.github.io/2026/06/01/%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-open-deep-research/index.html">
 <meta property="og:site_name" content="Kalvin Li的技术笔记">
-<meta property="og:description" content="open_deep_research源码学习（1）学习目的：以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程 整体概述：open_deep_research是基于Langgraph的一个开源项目，有文献检索，报告生成的功能。 该Agent通过编排各个有独立功能的节点或者子图来进行功能的实现，流程如下： 12">
+<meta property="og:description" content="open_deep_research源码学习（1）学习目的：以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-01T03:20:26.000Z">
-<meta property="article:modified_time" content="2026-06-02T00:41:54.441Z">
+<meta property="article:modified_time" content="2026-06-02T10:26:24.999Z">
 <meta property="article:author" content="Kalvin Li">
 <meta property="article:tag" content="源码学习">
 <meta name="twitter:card" content="summary">
@@ -135,13 +135,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -204,7 +204,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-06-02 08:41:54" itemprop="dateModified" datetime="2026-06-02T08:41:54+08:00">2026-06-02</time>
+      <time title="修改时间：2026-06-02 18:26:24" itemprop="dateModified" datetime="2026-06-02T18:26:24+08:00">2026-06-02</time>
     </span>
 
   
@@ -217,6 +217,8 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="open-deep-research源码学习（1）"><a href="#open-deep-research源码学习（1）" class="headerlink" title="open_deep_research源码学习（1）"></a>open_deep_research源码学习（1）</h1><h2 id="学习目的："><a href="#学习目的：" class="headerlink" title="学习目的："></a>学习目的：</h2><p>以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程</p>
+<span id="more"></span>
+
 <h2 id="整体概述："><a href="#整体概述：" class="headerlink" title="整体概述："></a>整体概述：</h2><p>open_deep_research是基于Langgraph的一个开源项目，有文献检索，报告生成的功能。</p>
 <p>该Agent通过编排各个有独立功能的节点或者子图来进行功能的实现，流程如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A[&quot;用户 messages&quot;] --&gt; B[&quot;clarify_with_user: 判断是否需要澄清&quot;]</span><br><span class="line">    B --&gt; C[&quot;write_research_brief: 生成研究 brief&quot;]</span><br><span class="line">    C --&gt; D[&quot;research_supervisor: 研究主管子图&quot;]</span><br><span class="line">    D --&gt; E[&quot;researcher_subgraph: 多个 researcher 并行搜索&quot;]</span><br><span class="line">    E --&gt; F[&quot;compress_research: 压缩每个 researcher 的发现&quot;]</span><br><span class="line">    F --&gt; D</span><br><span class="line">    D --&gt; G[&quot;final_report_generation: 汇总最终报告&quot;]</span><br></pre></td></tr></table></figure>
@@ -248,6 +250,13 @@
 <li>最后把读到的值传给 Configuration(…) 构造配置对象。</li>
 </ul>
 <p>所以它的作用是：让配置加载逻辑自动跟随 Configuration 类的字段变化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> configurable.allow_clarification:</span><br><span class="line">    <span class="comment"># Skip clarification step and proceed directly to research</span></span><br><span class="line">    <span class="keyword">return</span> Command(goto=<span class="string">&quot;write_research_brief&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果没有明确指定configurable中的allow_clarification字段，也就是不需要执行澄清操作，就通过Command函数直接跳转到write_research_brief节点。</p>
+<p>接下来我们看该节点的下一步操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">messages = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">model_config = &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: configurable.research_model,</span><br><span class="line">    <span class="string">&quot;max_tokens&quot;</span>: configurable.research_model_max_tokens,</span><br><span class="line">    <span class="string">&quot;api_key&quot;</span>: get_api_key_for_model(configurable.research_model, config),</span><br><span class="line">    **get_model_provider_kwargs(configurable.research_model, configurable),</span><br><span class="line">    <span class="string">&quot;tags&quot;</span>: [<span class="string">&quot;langsmith:nostream&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Configure model with structured output and retry logic</span></span><br><span class="line">clarification_model = (</span><br><span class="line">    configurable_model</span><br><span class="line">    .with_structured_output(ClarifyWithUser)</span><br><span class="line">    .with_retry(stop_after_attempt=configurable.max_structured_output_retries)</span><br><span class="line">    .with_config(model_config)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>第二步操作主要是进行模型调用过程中的配置流程，明确一些关键参数</p>
 
     </div>
 
@@ -269,6 +278,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2026/06/05/%E8%BF%81%E7%A7%BB%E6%9C%8D%E5%8A%A1%E6%97%B6%E9%A1%B9%E7%9B%AE%E4%B8%ADdocker-bridge%E4%B8%8E%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%85%B6%E4%BB%96%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="next" title="迁移服务时项目中docker bridge与宿主机其他服务通信的问题解决">
+                  迁移服务时项目中docker bridge与宿主机其他服务通信的问题解决 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
