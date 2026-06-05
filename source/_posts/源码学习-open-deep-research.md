@@ -4,10 +4,12 @@ date: 2026-06-01 11:20:26
 tags: 源码学习
 ---
 
-#open_deep_research源码学习（1）
+# open_deep_research源码学习（1）
 
 ## 学习目的：
 以该项目为例子，可以一览基于Langgraph开源框架构建Agent的标准流程，适合对Agent有一定基础的读者梳理构建Agent的固有流程
+
+<!--more-->
 
 ## 整体概述：
 
@@ -26,7 +28,7 @@ flowchart TD
     D --> G["final_report_generation: 汇总最终报告"]
 ```
 
-## 第一部分：图结构搭建（src/open_deep_research/deep_researcher.py）
+## 图结构搭建:
 
 该部分是整个项目中最核心的部分，作者在此处定义了整个Agent工作流的结构和每一个节点的行为，来构建整个Graph.
 
@@ -200,12 +202,44 @@ class Configuration(BaseModel):
 简单来说就是Pydantic自动生成的"字段注册表"，通过这种方式，当需要加入一条新的字段时，直接往Configure中传递新字段的值即可，不必再修改from_runnable_config()中的内容。
 
 整体的流程大意如下：
--自动拿到 Configuration 所有字段名。
--对每个字段，先从环境变量里读，比如 RESEARCH_MODEL。
--如果环境变量没有，就从 LangGraph runtime config 里读，比如 config["configurable"]["research_model"]。
--最后把读到的值传给 Configuration(...) 构造配置对象。
+- 自动拿到 Configuration 所有字段名。
+- 对每个字段，先从环境变量里读，比如 RESEARCH_MODEL。
+- 如果环境变量没有，就从 LangGraph runtime config 里读，比如 config["configurable"]["research_model"]。
+- 最后把读到的值传给 Configuration(...) 构造配置对象。
 
 所以它的作用是：让配置加载逻辑自动跟随 Configuration 类的字段变化。
+
+```python
+if not configurable.allow_clarification:
+    # Skip clarification step and proceed directly to research
+    return Command(goto="write_research_brief")
+```
+
+如果没有明确指定configurable中的allow_clarification字段，也就是不需要执行澄清操作，就通过Command函数直接跳转到write_research_brief节点。
+
+接下来我们看该节点的下一步操作：
+
+```python
+messages = state["messages"]
+model_config = {
+    "model": configurable.research_model,
+    "max_tokens": configurable.research_model_max_tokens,
+    "api_key": get_api_key_for_model(configurable.research_model, config),
+    **get_model_provider_kwargs(configurable.research_model, configurable),
+    "tags": ["langsmith:nostream"]
+}
+    
+# Configure model with structured output and retry logic
+clarification_model = (
+    configurable_model
+    .with_structured_output(ClarifyWithUser)
+    .with_retry(stop_after_attempt=configurable.max_structured_output_retries)
+    .with_config(model_config)
+)
+```
+
+第二步操作主要是进行模型调用过程中的配置流程，明确一些关键参数
+
 
 
 
