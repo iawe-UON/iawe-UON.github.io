@@ -20,27 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"iawe-uon.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":{"utterances":{"text":"GitHub Comments"}},"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="单例设计模式含义是在程序中使用单例模式设计的类只能有唯一一个实例，并且提供一个全局接口供其他程序访问。 常用场景：数据库连接池、日志系统">
+    <meta name="description" content="对话存储是将历史对话以JSON格式保存在文件中，用以对历史对话进行持久化和落盘，避免对话丢失。 上下文保护概念约等于当上下文溢出时，如何进行通过技术手段进行处理，防止服务崩掉。一般可以通过上下文压缩进行，策略如下:1.工具结果落盘–&gt;2.中间对话删除–&gt;3.用占位符对旧工具结果占位，来达到压缩上下文的效果。此处的claw0的上下文保护逻辑为三阶段溢出重试：正常 –&gt; 截断 –&amp;g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例设计模式">
-<meta property="og:url" content="https://iawe-uon.github.io/2026/01/28/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="openclaw原理-1-对话和上下文保护">
+<meta property="og:url" content="https://iawe-uon.github.io/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/index.html">
 <meta property="og:site_name" content="Kalvin Li的技术笔记">
-<meta property="og:description" content="单例设计模式含义是在程序中使用单例模式设计的类只能有唯一一个实例，并且提供一个全局接口供其他程序访问。 常用场景：数据库连接池、日志系统">
+<meta property="og:description" content="对话存储是将历史对话以JSON格式保存在文件中，用以对历史对话进行持久化和落盘，避免对话丢失。 上下文保护概念约等于当上下文溢出时，如何进行通过技术手段进行处理，防止服务崩掉。一般可以通过上下文压缩进行，策略如下:1.工具结果落盘–&gt;2.中间对话删除–&gt;3.用占位符对旧工具结果占位，来达到压缩上下文的效果。此处的claw0的上下文保护逻辑为三阶段溢出重试：正常 –&gt; 截断 –&amp;g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-28T13:43:20.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:49:00.215Z">
+<meta property="article:published_time" content="2026-06-26T03:43:03.000Z">
+<meta property="article:modified_time" content="2026-06-26T07:07:19.713Z">
 <meta property="article:author" content="Kalvin Li">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="源码学习">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://iawe-uon.github.io/2026/01/28/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+<link rel="canonical" href="https://iawe-uon.github.io/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://iawe-uon.github.io/2026/01/28/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/","path":"2026/01/28/单例设计模式/","title":"单例设计模式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://iawe-uon.github.io/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/","path":"2026/06/26/openclaw原理-1-对话和上下文保护/","title":"openclaw原理-1-对话和上下文保护"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>单例设计模式 | Kalvin Li的技术笔记</title>
+<title>openclaw原理-1-对话和上下文保护 | Kalvin Li的技术笔记</title>
   
 
 
@@ -109,7 +109,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -122,6 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E5%BE%85%E6%96%BD%E5%B7%A5%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">【待施工】</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -167,7 +168,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://iawe-uon.github.io/2026/01/28/%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://iawe-uon.github.io/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,12 +181,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="单例设计模式 | Kalvin Li的技术笔记">
+      <meta itemprop="name" content="openclaw原理-1-对话和上下文保护 | Kalvin Li的技术笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          单例设计模式
+          openclaw原理-1-对话和上下文保护
         </h1>
 
         <div class="post-meta-container">
@@ -195,15 +196,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-01-28 21:43:20" itemprop="dateCreated datePublished" datetime="2026-01-28T21:43:20+08:00">2026-01-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-02-05 15:49:00" itemprop="dateModified" datetime="2026-02-05T15:49:00+08:00">2026-02-05</time>
+      <time title="创建时间：2026-06-26 11:43:03 / 修改时间：15:07:19" itemprop="dateCreated datePublished" datetime="2026-06-26T11:43:03+08:00">2026-06-26</time>
     </span>
 
   
@@ -215,15 +210,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>单例设计模式含义是在程序中使用单例模式设计的类只能有唯一一个实例，并且提供一个全局接口供其他程序访问。</p>
-<p>常用场景：<br>数据库连接池、日志系统</p>
+    <div class="post-body" itemprop="articleBody"><p>对话存储是将历史对话以JSON格式保存在文件中，用以对历史对话进行持久化和落盘，避免对话丢失。</p>
+<p>上下文保护概念约等于当上下文溢出时，如何进行通过技术手段进行处理，防止服务崩掉。一般可以通过上下文压缩进行，策略如下:1.工具结果落盘–&gt;2.中间对话删除–&gt;3.用占位符对旧工具结果占位，来达到压缩上下文的效果。<br>此处的claw0的上下文保护逻辑为三阶段溢出重试：正常 –&gt; 截断 –&gt; LLM压缩 –&gt; 失败</p>
 <span id="more"></span>
 
-<p>实现方式1：使用import导入实例</p>
-<p>python中这是最容易实现的方式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">db_connect</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.connect_string = <span class="string">&quot;XXXXXX&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;数据库连接池创建完成，地址：<span class="subst">&#123;self.connect_string&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;正在查询地址为<span class="subst">&#123;self.connect_string&#125;</span>的数据库&quot;</span>)</span><br><span class="line"></span><br><span class="line">db_connection = db_connect()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">其他脚本：</span></span><br><span class="line"><span class="string">import db_connection</span></span><br><span class="line"><span class="string">db_connection.query()</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>通过import导入可以确保db_connection全局只能被实例化一次</p>
-
+<h1 id="【待施工】"><a href="#【待施工】" class="headerlink" title="【待施工】"></a>【待施工】</h1>
     </div>
 
     
@@ -232,21 +223,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+              <a href="/tags/%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" rel="tag"># 源码学习</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2026/01/27/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="prev" title="工厂模式">
-                  <i class="fa fa-angle-left"></i> 工厂模式
+                <a href="/2026/06/26/openclaw%E5%8E%9F%E7%90%86-0/" rel="prev" title="openclaw原理-0">
+                  <i class="fa fa-angle-left"></i> openclaw原理-0
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/01/29/%E8%A3%85%E9%A5%B0%E5%99%A8/" rel="next" title="装饰器">
-                  装饰器 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

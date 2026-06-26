@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -154,6 +154,84 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://iawe-uon.github.io/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kalvin Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kalvin Li的技术笔记">
+      <meta itemprop="description" content="Kalvin Li的博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Kalvin Li的技术笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/" class="post-title-link" itemprop="url">openclaw原理-1-对话和上下文保护</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-26 11:43:03 / 修改时间：15:07:19" itemprop="dateCreated datePublished" datetime="2026-06-26T11:43:03+08:00">2026-06-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>对话存储是将历史对话以JSON格式保存在文件中，用以对历史对话进行持久化和落盘，避免对话丢失。</p>
+<p>上下文保护概念约等于当上下文溢出时，如何进行通过技术手段进行处理，防止服务崩掉。一般可以通过上下文压缩进行，策略如下:1.工具结果落盘–&gt;2.中间对话删除–&gt;3.用占位符对旧工具结果占位，来达到压缩上下文的效果。<br>此处的claw0的上下文保护逻辑为三阶段溢出重试：正常 –&gt; 截断 –&gt; LLM压缩 –&gt; 失败</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/06/26/openclaw%E5%8E%9F%E7%90%86-1-%E5%AF%B9%E8%AF%9D%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8A%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -839,89 +917,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2026/03/14/%E5%A6%82%E4%BD%95%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Clinux%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://iawe-uon.github.io/2026/03/04/docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kalvin Li">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kalvin Li的技术笔记">
-      <meta itemprop="description" content="Kalvin Li的博客">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Kalvin Li的技术笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/04/docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">docker基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-03-04 14:30:08" itemprop="dateCreated datePublished" datetime="2026-03-04T14:30:08+08:00">2026-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-14 14:34:26" itemprop="dateModified" datetime="2026-03-14T14:34:26+08:00">2026-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Dockerfile 是容器化技术的核心组成部分，它能让开发者和 DevOps 工程师将应用程序及其所有依赖项打包成轻量级、可移植的容器。本指南将全面讲解 Dockerfile，从基础概念到高级技巧，最终使您掌握编写高效、安全且适合生产环境的 Dockerfile 所需的技能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/04/docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
