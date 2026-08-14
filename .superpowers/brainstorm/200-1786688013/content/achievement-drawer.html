@@ -1,0 +1,42 @@
+<style>
+  .drawer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:20px}
+  .choice{border:1px solid #d8dde6;border-radius:18px;overflow:hidden;background:#fff;cursor:pointer;transition:.2s}
+  .choice:hover,.choice.selected{border-color:#4667d5;box-shadow:0 12px 28px rgba(31,41,55,.12);transform:translateY(-3px)}
+  .stage{height:350px;background:#f4f6fa;padding:15px;color:#1f2937;position:relative;overflow:hidden}
+  .shell{height:100%;border-radius:14px;background:#fff;padding:13px;overflow:hidden;box-sizing:border-box}.head{display:flex;align-items:center;margin-bottom:12px}.head b{font-size:12px}.filters{margin-left:auto;background:#edf1fb;border-radius:999px;padding:4px 8px;font-size:8px}
+  .item{border:1px solid #e4e8ef;border-radius:11px;padding:10px;margin-bottom:8px;font-size:9px;background:#fff}.item-title{display:flex;gap:6px;font-weight:700}.plus{margin-left:auto;color:#4667d5}.meta{color:#667085;margin-top:5px}.expanded{background:#f4f6fa;padding:9px;border-radius:8px;margin-top:9px;line-height:1.5}.actions{display:flex;gap:5px;margin-top:7px}.btn{background:#4667d5;color:#fff;border-radius:7px;padding:5px 7px;font-size:8px}
+  .screen{height:100%;border-radius:14px;background:#fff;position:relative;overflow:hidden}.list{padding:13px;width:58%;box-sizing:border-box}.dim{position:absolute;inset:0;background:rgba(31,41,55,.18)}.side{position:absolute;right:0;top:0;bottom:0;width:62%;background:#fff;border-radius:16px 0 0 16px;box-shadow:-10px 0 24px rgba(31,41,55,.14);padding:16px;box-sizing:border-box}.side small{color:#4667d5}.side h4{font-size:14px;margin:7px 0}.detail{font-size:9px;color:#667085;line-height:1.6}.doc{height:75px;background:#f4f6fa;border-radius:10px;margin:12px 0;display:grid;place-items:center;font-size:9px;color:#667085}
+  .rail{display:flex;gap:9px;transform:translateX(-32%);margin-top:17px}.rail-card{min-width:78%;height:205px;background:#f4f6fa;border-radius:15px;padding:15px;box-sizing:border-box}.rail-card.active{background:#1f2937;color:#fff}.rail-card h4{font-size:14px}.rail-card p{font-size:9px;line-height:1.6}.handle{width:34px;height:4px;background:#cbd3e1;border-radius:99px;margin:10px auto}.dots{text-align:center;color:#4667d5;font-size:18px;letter-spacing:3px}
+  .copy{padding:14px 16px 17px}.copy h3{margin:0 0 5px}.copy p{font-size:13px;color:#667085;line-height:1.5;margin:0}.recommend{display:inline-block;margin-top:9px;border-radius:999px;background:#edf1fb;color:#3552b5;padding:4px 8px;font-size:11px;font-weight:700}
+  @media(max-width:900px){.drawer-grid{grid-template-columns:1fr}.stage{height:310px}}
+</style>
+
+<h2>成果详情应该怎样“抽拉”？</h2>
+<p class="subtitle">列表始终按文章、软著、专利筛选；点击成果后，用不同方式露出详情、证书预览与外部链接。点击卡片选择。</p>
+
+<div class="drawer-grid">
+  <div class="choice" data-choice="drawer-side-sheet" onclick="toggleSelect(this)">
+    <div class="stage"><div class="screen">
+      <div class="list"><div class="head"><b>成果</b><span class="filters">全部</span></div><div class="item"><div class="item-title">软件著作权 A <span class="plus">→</span></div><div class="meta">2025 · 已登记</div></div><div class="item"><div class="item-title">发明专利 B <span class="plus">→</span></div><div class="meta">2024 · 公开</div></div></div>
+      <div class="dim"></div><div class="side"><small>软件著作权</small><h4>分布式任务调度平台 V1.0</h4><div class="detail">登记号：示例编号<br>授权时间：2025-06<br>职责：核心设计与开发</div><div class="doc">证书 / 附件预览</div><span class="btn">查看详情 ↗</span></div>
+    </div></div>
+    <div class="copy"><h3>A · 右侧详情抽屉</h3><p>桌面端从右侧滑入，移动端自动改为底部抽屉；列表上下文保留，最符合“可抽拉”的直觉。</p><span class="recommend">推荐</span></div>
+  </div>
+
+  <div class="choice" data-choice="drawer-accordion" onclick="toggleSelect(this)">
+    <div class="stage"><div class="shell">
+      <div class="head"><b>成果</b><span class="filters">软著 · 专利</span></div>
+      <div class="item"><div class="item-title">分布式任务调度平台 V1.0 <span class="plus">−</span></div><div class="meta">软件著作权 · 2025</div><div class="expanded">登记号、完成时间与个人职责直接在卡片内部展开。<div class="actions"><span class="btn">证书</span><span class="btn">详情</span></div></div></div>
+      <div class="item"><div class="item-title">一种数据处理方法 <span class="plus">＋</span></div><div class="meta">发明专利 · 2024</div></div><div class="item"><div class="item-title">技术文章合集 <span class="plus">＋</span></div><div class="meta">文章 · 持续更新</div></div>
+    </div></div>
+    <div class="copy"><h3>B · 行内手风琴</h3><p>实现最轻、无悬浮层，键盘访问也直接；但详情较多时会推挤页面，浏览位置容易跳动。</p></div>
+  </div>
+
+  <div class="choice" data-choice="drawer-horizontal" onclick="toggleSelect(this)">
+    <div class="stage"><div class="shell">
+      <div class="head"><b>成果卡片</b><span class="filters">拖动浏览</span></div><div class="handle"></div>
+      <div class="rail"><div class="rail-card"><small>文章</small><h4>OpenClaw 原理</h4><p>源码学习系列与技术拆解。</p></div><div class="rail-card active"><small>软件著作权</small><h4>任务调度平台</h4><p>卡片向两侧拉动切换，当前成果放大显示详情。</p><span class="btn">查看证书</span></div></div><div class="dots">· ● ·</div>
+    </div></div>
+    <div class="copy"><h3>C · 横向拉展卡片</h3><p>视觉动感强、移动端手势自然；桌面端效率较低，成果多时不利于快速扫描和筛选。</p></div>
+  </div>
+</div>

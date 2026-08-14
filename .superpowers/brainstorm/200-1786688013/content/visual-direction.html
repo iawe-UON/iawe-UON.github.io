@@ -1,0 +1,58 @@
+<style>
+  .concept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+  .concept{border:1px solid #d8dde6;border-radius:18px;overflow:hidden;background:#fff;cursor:pointer;transition:.2s}
+  .concept:hover,.concept.selected{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,41,55,.12);border-color:#4667d5}
+  .preview{height:350px;background:#f4f6fa;padding:14px;color:#1f2937}
+  .mini-shell{height:100%;border-radius:14px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+  .mini-nav{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #e4e8ef;font-size:10px}
+  .brand{font-weight:700;margin-right:auto}.pill{border-radius:999px;background:#edf1fb;padding:4px 8px}
+  .hero{padding:22px 18px 14px}.eyebrow{font-size:9px;color:#4667d5}.hero h4{margin:5px 0;font-size:18px}.hero p{font-size:10px;color:#667085;line-height:1.5}
+  .cta{display:inline-block;background:#4667d5;color:#fff;border-radius:9px;padding:7px 10px;font-size:9px;margin-top:4px}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 18px}.tile{border-radius:11px;background:#f4f6fa;padding:12px;font-size:10px;min-height:44px}
+  .post-list{padding:12px 18px;display:grid;gap:8px}.post{border-radius:10px;background:#f4f6fa;padding:10px;font-size:10px}.tags{display:flex;gap:5px;margin-top:5px}.tag{font-size:8px;background:#edf1fb;border-radius:999px;padding:3px 6px}
+  .drawer{margin:12px;border-radius:14px;background:#1f2937;color:#fff;padding:15px}.drawer small{color:#c8d2ef}.drawer-row{margin-top:10px;border-radius:9px;background:#334155;padding:9px;font-size:9px}
+  .section-strip{margin:8px 14px;border-radius:12px;background:#f4f6fa;padding:13px;font-size:10px}.timeline{border-left:2px solid #4667d5;padding-left:10px;margin:12px 20px;font-size:9px;line-height:2.1}
+  .concept-copy{padding:14px 16px 17px}.concept-copy h3{margin:0 0 5px}.concept-copy p{font-size:13px;color:#667085;line-height:1.5;margin:0}.recommend{display:inline-block;margin-top:9px;border-radius:999px;background:#edf1fb;color:#3552b5;padding:4px 8px;font-size:11px;font-weight:700}
+  @media(max-width:900px){.concept-grid{grid-template-columns:1fr}.preview{height:300px}}
+</style>
+
+<h2>网站应该首先传达什么？</h2>
+<p class="subtitle">三种方案都保留 Hexo 内容发布、标签跳转与评论；差别在于访客进入网站后先看到“你”还是“文章”。点击一张卡片选择。</p>
+
+<div class="concept-grid">
+  <div class="concept" data-choice="a-portfolio-first" onclick="toggleSelect(this)">
+    <div class="preview">
+      <div class="mini-shell">
+        <div class="mini-nav"><span class="brand">KALVIN LI</span><span>关于</span><span>成果</span><span>简历</span><span class="pill">博客</span></div>
+        <div class="hero"><span class="eyebrow">SOFTWARE ENGINEER · TECH WRITER</span><h4>构建可靠系统，也记录思考。</h4><p>个人简介、技术方向与核心成果在首屏建立完整印象。</p><span class="cta">查看简历</span></div>
+        <div class="tiles"><div class="tile">个人简介<br><small>经历与方向</small></div><div class="tile">精选成果<br><small>文章 · 软著 · 专利</small></div></div>
+        <div class="post-list"><div class="post">最新文章：GCC 编译实操<div class="tags"><span class="tag">Linux</span><span class="tag">工具箱</span></div></div></div>
+      </div>
+    </div>
+    <div class="concept-copy"><h3>A · 作品集优先</h3><p>首页概览个人品牌，简介、简历、成果、博客各自独立。层级清楚，最适合求职、同行交流与长期维护。</p><span class="recommend">推荐</span></div>
+  </div>
+
+  <div class="concept" data-choice="b-blog-first" onclick="toggleSelect(this)">
+    <div class="preview">
+      <div class="mini-shell">
+        <div class="mini-nav"><span class="brand">KALVIN'S NOTES</span><span>标签</span><span>归档</span><span class="pill">个人中心</span></div>
+        <div class="hero"><span class="eyebrow">LATEST WRITING</span><h4>技术文章仍是首页主角</h4><p>保留熟悉的博客阅读路径，用侧边抽屉承载简介、联系方式和简历入口。</p></div>
+        <div class="post-list"><div class="post">OpenClaw 原理：上下文保护<div class="tags"><span class="tag">源码学习</span></div></div><div class="post">迁移服务中的 Docker Bridge<div class="tags"><span class="tag">Debug</span></div></div></div>
+        <div class="drawer"><b>个人中心 ↗</b><br><small>展开查看简介、简历与成果</small></div>
+      </div>
+    </div>
+    <div class="concept-copy"><h3>B · 博客优先</h3><p>对现有 NexT 改动较小，老读者路径稳定；但个人履历与成果较隐蔽，不利于快速建立专业印象。</p></div>
+  </div>
+
+  <div class="concept" data-choice="c-single-page" onclick="toggleSelect(this)">
+    <div class="preview">
+      <div class="mini-shell">
+        <div class="mini-nav"><span class="brand">KALVIN LI</span><span class="pill">菜单</span></div>
+        <div class="hero"><span class="eyebrow">PERSONAL HUB</span><h4>一页了解全部信息</h4><p>通过锚点在同一页面浏览简介、简历、成果与最新文章。</p><span class="cta">开始浏览 ↓</span></div>
+        <div class="section-strip">01 · 关于我</div><div class="section-strip">02 · 履历与能力</div><div class="section-strip">03 · 文章 / 软著 / 专利</div>
+        <div class="timeline">2026 最新文章<br>2025 工作经历<br>2024 软件著作权</div>
+      </div>
+    </div>
+    <div class="concept-copy"><h3>C · 单页门户</h3><p>叙事连贯、移动端顺滑，但内容变多后页面过长；博客与成果检索能力会弱于独立页面。</p></div>
+  </div>
+</div>
