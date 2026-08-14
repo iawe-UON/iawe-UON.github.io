@@ -1,6 +1,18 @@
 # NexT theme overrides.
 # Keep comment settings outside the theme directory to reduce upgrade conflicts.
 
+menu:
+  首页: / || fa fa-home
+  关于: /about/ || fa fa-user
+  简历: /resume/ || fa fa-id-card
+  成果: /achievements/ || fa fa-award
+  博客: /blog/ || fa fa-book
+
+custom_file_path:
+  head: source/_data/portfolio/head.njk
+  bodyEnd: source/_data/portfolio/body-end.njk
+  style: source/_data/portfolio/styles.styl
+
 comments:
   active: utterances
   nav:
@@ -11,4 +23,4 @@ utterances:
   enable: true
   repo: iawe-UON/iawe-UON.github.io
   issue_term: pathname
-  theme: preferred-color-scheme
+  theme: github-light

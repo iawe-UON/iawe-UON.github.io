@@ -1,0 +1,55 @@
+{% extends '_layout.njk' %}
+{# Shared UI is rendered through the registered portfolio component partial. #}
+
+{% set portfolio = site.data.portfolio %}
+{% set profile = portfolio.profile %}
+{% set contact = portfolio.contact %}
+
+{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+{% block class %}portfolio-shell{% endblock %}
+
+{% block content %}
+<div class="portfolio-page" data-portfolio-page="about">
+  <section class="portfolio-hero portfolio-card">
+    <div class="portfolio-avatar-wrap">
+      {% if profile.avatar %}
+        <img class="portfolio-avatar" src="{{ url_for(profile.avatar) }}" alt="{{ profile.name }}的头像">
+      {% else %}
+        <span class="portfolio-avatar portfolio-avatar--fallback" aria-hidden="true">{{ portfolio_initial(profile.name) }}</span>
+      {% endif %}
+    </div>
+    <div class="portfolio-hero__content">
+      <p class="portfolio-kicker">关于我</p>
+      <h1>{{ profile.name }}</h1>
+      <p>{{ profile.summary }}</p>
+      <p>{{ profile.role }} · {{ profile.tagline }}</p>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '方向', heading: '技术方向'}) }}
+    {{ partial('_partials/portfolio/component.njk', {component: 'tags', items: profile.skills}) }}
+  </section>
+
+  {% if portfolio.resume.experience and portfolio.resume.experience.length %}
+    <section class="portfolio-section">
+      {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '经历', heading: '经历摘要'}) }}
+      <div class="portfolio-grid">
+        {% for item in portfolio.resume.experience %}
+          {{ partial('_partials/portfolio/component.njk', {component: 'resume-item', itemTitle: item.title, meta: item.organization + ' · ' + item.period, description: item.description}) }}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if contact.email or contact.phone %}
+    <section class="portfolio-section portfolio-card portfolio-contact">
+      {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '联系', heading: '联系方式', description: '以下信息为静态文本。'}) }}
+      <dl>
+        {% if contact.email %}<div><dt>邮箱</dt><dd>{{ contact.email }}</dd></div>{% endif %}
+        {% if contact.phone %}<div><dt>电话</dt><dd>{{ contact.phone }}</dd></div>{% endif %}
+      </dl>
+    </section>
+  {% endif %}
+</div>
+{% endblock %}

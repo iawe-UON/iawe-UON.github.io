@@ -1,0 +1,31 @@
+{% if component === 'heading' %}
+  <header class="portfolio-section__header">
+    {% if kicker %}<p class="portfolio-kicker">{{ kicker }}</p>{% endif %}
+    <h2>{{ heading }}</h2>
+    {% if description %}<p>{{ description }}</p>{% endif %}
+  </header>
+{% elif component === 'tags' %}
+  {% if items and items.length %}
+    <ul class="portfolio-tags" aria-label="技能标签">
+      {% for item in items %}<li class="portfolio-tag">{{ item }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+{% elif component === 'action' %}
+  <a class="portfolio-action{% if secondary %} portfolio-action--secondary{% endif %}" href="{{ href }}">{{ label }}</a>
+{% elif component === 'achievement' %}
+  <article class="portfolio-card portfolio-achievement-summary"{% if featured %} data-featured-achievement{% endif %}>
+    <div class="portfolio-card__meta">
+      <span class="portfolio-tag">{{ portfolio_achievement_type(item.type) }}</span>
+      <time>{{ item.date }}</time>
+    </div>
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.summary }}</p>
+    <p class="portfolio-card__status">{{ item.status }}</p>
+  </article>
+{% elif component === 'resume-item' %}
+  <article class="portfolio-card portfolio-resume-item">
+    <div class="portfolio-card__meta"><h3>{{ itemTitle }}</h3>{% if meta %}<span>{{ meta }}</span>{% endif %}</div>
+    {% if description %}<p>{{ description }}</p>{% endif %}
+    {% if href %}<a href="{{ href }}" rel="noopener noreferrer" target="_blank">查看项目</a>{% endif %}
+  </article>
+{% endif %}

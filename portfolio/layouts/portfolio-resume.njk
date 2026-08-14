@@ -1,0 +1,58 @@
+{% extends '_layout.njk' %}
+{# Shared UI is rendered through the registered portfolio component partial. #}
+
+{% set resume = site.data.portfolio.resume %}
+
+{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+{% block class %}portfolio-shell{% endblock %}
+
+{% block content %}
+<div class="portfolio-page" data-portfolio-page="resume">
+  <header class="portfolio-page-header">
+    <div>
+      <p class="portfolio-kicker">履历</p>
+      <h1>结构化简历</h1>
+      <p>工作、教育、技能与项目经历。</p>
+    </div>
+    {% if resume.pdf %}
+      <a class="portfolio-action" data-resume-download href="{{ url_for(resume.pdf) }}" download>下载 PDF</a>
+    {% endif %}
+  </header>
+
+  <section class="portfolio-section" data-resume-section="experience">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: 'Experience', heading: '工作经历'}) }}
+    <div class="portfolio-stack">
+      {% for item in resume.experience %}
+        {{ partial('_partials/portfolio/component.njk', {component: 'resume-item', itemTitle: item.title, meta: item.organization + ' · ' + item.period, description: item.description}) }}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="portfolio-section" data-resume-section="education">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: 'Education', heading: '教育背景'}) }}
+    <div class="portfolio-stack">
+      {% for item in resume.education %}
+        {{ partial('_partials/portfolio/component.njk', {component: 'resume-item', itemTitle: item.school, meta: item.degree + ' · ' + item.period, description: item.description}) }}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="portfolio-section" data-resume-section="skills">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: 'Skills', heading: '技能分组'}) }}
+    <div class="portfolio-grid">
+      {% for group in resume.skillGroups %}
+        <article class="portfolio-card"><h3>{{ group.name }}</h3>{{ partial('_partials/portfolio/component.njk', {component: 'tags', items: group.items}) }}</article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="portfolio-section" data-resume-section="projects">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: 'Projects', heading: '项目经历'}) }}
+    <div class="portfolio-stack">
+      {% for item in resume.projects %}
+        {{ partial('_partials/portfolio/component.njk', {component: 'resume-item', itemTitle: item.name, meta: item.period, description: item.description, href: item.url}) }}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

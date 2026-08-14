@@ -1,0 +1,392 @@
+html[data-theme='light']
+  --portfolio-bg: #f5f7fb
+  --portfolio-text: #18202a
+  --portfolio-accent: #2b6ef3
+
+html[data-theme='dark']
+  --portfolio-bg: #111827
+  --portfolio-text: #e5e7eb
+  --portfolio-accent: #7aa2ff
+
+html
+body
+  max-width: 100%
+  overflow-x: clip
+
+body
+  background: var(--portfolio-bg)
+  color: var(--portfolio-text)
+  transition: background-color .2s ease, color .2s ease
+
+body *
+  box-sizing: border-box
+  min-width: 0
+
+a
+  color: var(--portfolio-accent)
+
+.headband
+  background: var(--portfolio-accent)
+
+.header-inner
+.site-brand-container
+.site-nav
+.footer
+.post-block
+.pagination
+  background: var(--portfolio-bg)
+  color: var(--portfolio-text)
+
+.main-inner.portfolio-shell
+  box-sizing: border-box
+  max-width: 1120px
+  padding: 42px 24px 72px
+  width: 100%
+
+.portfolio-page
+  display: grid
+  gap: 56px
+  width: 100%
+
+.portfolio-page :where(h1, h2, h3, p, a, dd, dt, span, time)
+  overflow-wrap: anywhere
+
+.portfolio-page h1
+.portfolio-page h2
+.portfolio-page h3
+  color: var(--portfolio-text)
+  line-height: 1.25
+  margin-top: 0
+
+.portfolio-page h1
+  font-size: clamp(2.25rem, 7vw, 4.5rem)
+  margin-bottom: 18px
+
+.portfolio-page h2
+  font-size: clamp(1.65rem, 4vw, 2.4rem)
+  margin-bottom: 12px
+
+.portfolio-page h3
+  font-size: 1.12rem
+  margin-bottom: 10px
+
+.portfolio-page p
+  line-height: 1.8
+
+.portfolio-card
+.portfolio-action
+.portfolio-tag
+.portfolio-theme-toggle
+.portfolio-filter
+.portfolio-drawer
+  border-radius: 16px
+
+.portfolio-card
+  background: var(--portfolio-bg)
+  border: 1px solid var(--portfolio-accent)
+  color: var(--portfolio-text)
+  padding: 24px
+
+.portfolio-hero
+  align-items: center
+  display: grid
+  gap: clamp(24px, 5vw, 56px)
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr)
+  padding: clamp(28px, 6vw, 64px)
+
+.portfolio-avatar-wrap
+  align-items: center
+  display: flex
+  justify-content: center
+
+.portfolio-avatar
+  align-items: center
+  aspect-ratio: 1
+  border: 2px solid var(--portfolio-accent)
+  border-radius: 24px
+  display: flex
+  font-size: clamp(2.5rem, 8vw, 5rem)
+  font-weight: 700
+  justify-content: center
+  max-width: 180px
+  object-fit: cover
+  width: 100%
+
+.portfolio-avatar--fallback
+  background: var(--portfolio-accent)
+  color: var(--portfolio-bg)
+
+.portfolio-kicker
+  color: var(--portfolio-accent)
+  font-size: .78rem
+  font-weight: 700
+  letter-spacing: .12em
+  margin: 0 0 10px
+  text-transform: uppercase
+
+.portfolio-hero__tagline
+  font-size: 1.25rem
+  font-weight: 600
+
+.portfolio-actions
+.portfolio-tags
+  align-items: center
+  display: flex
+  flex-wrap: wrap
+  gap: 12px
+
+.portfolio-actions
+  margin-top: 28px
+
+.portfolio-action
+.portfolio-theme-toggle
+.portfolio-filter
+  background: var(--portfolio-accent)
+  border: 1px solid var(--portfolio-accent)
+  color: var(--portfolio-bg)
+  cursor: pointer
+  display: inline-flex
+  font: inherit
+  font-weight: 700
+  gap: 8px
+  justify-content: center
+  padding: 11px 18px
+  text-decoration: none
+
+.portfolio-action--secondary
+  background: transparent
+  color: var(--portfolio-accent)
+
+.portfolio-action:focus-visible
+.portfolio-theme-toggle:focus-visible
+.portfolio-filter:focus-visible
+.portfolio-achievement-card:focus-visible
+  outline: 3px solid var(--portfolio-accent)
+  outline-offset: 3px
+
+.portfolio-section
+  display: grid
+  gap: 24px
+
+.portfolio-section__header
+  max-width: 720px
+
+.portfolio-section__header p:last-child
+  margin-bottom: 0
+
+.portfolio-section__action
+  justify-self: start
+
+.portfolio-grid
+  display: grid
+  gap: 18px
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr))
+
+.portfolio-stack
+  display: grid
+  gap: 16px
+
+.portfolio-tags
+  list-style: none
+  margin: 0
+  padding: 0
+
+.portfolio-tag
+  background: var(--portfolio-bg)
+  border: 1px solid var(--portfolio-accent)
+  color: var(--portfolio-text)
+  display: inline-flex
+  padding: 7px 12px
+
+.portfolio-card__meta
+  align-items: flex-start
+  display: flex
+  flex-wrap: wrap
+  gap: 12px
+  justify-content: space-between
+
+.portfolio-card__meta h3
+  margin-bottom: 0
+
+.portfolio-card__status
+  color: var(--portfolio-accent)
+  font-weight: 700
+
+.portfolio-blog-card
+  display: grid
+  gap: 12px
+
+.portfolio-blog-card h2
+  margin-bottom: 0
+
+.portfolio-blog-card time
+  color: var(--portfolio-accent)
+  font-weight: 700
+
+.portfolio-blog-card .portfolio-tags li
+  display: flex
+
+.portfolio-blog-card .portfolio-tag
+  text-decoration: none
+
+.portfolio-blog-card__link
+  font-weight: 700
+  justify-self: start
+
+.portfolio-filters
+  display: flex
+  flex-wrap: wrap
+  gap: 10px
+
+.portfolio-filter[aria-pressed='false']
+  background: var(--portfolio-bg)
+  color: var(--portfolio-accent)
+
+.portfolio-achievement-card
+  cursor: pointer
+  display: grid
+  font: inherit
+  gap: 14px
+  text-align: left
+  width: 100%
+
+.portfolio-achievement-card__title
+  color: var(--portfolio-text)
+  font-size: 1.12rem
+
+.portfolio-empty
+  margin: 0
+  text-align: center
+
+.portfolio-drawer
+  background: var(--portfolio-bg)
+  border: 1px solid var(--portfolio-accent)
+  color: var(--portfolio-text)
+  height: 100dvh
+  inset: 0 0 0 auto
+  margin: 0
+  max-height: 100dvh
+  max-width: 100%
+  overflow-y: auto
+  padding: 28px
+  width: 460px
+
+.portfolio-drawer::backdrop
+  background: var(--portfolio-text)
+  opacity: .35
+
+.portfolio-drawer__close
+  background: var(--portfolio-bg)
+  border: 1px solid var(--portfolio-accent)
+  border-radius: 12px
+  color: var(--portfolio-accent)
+  cursor: pointer
+  display: block
+  font: inherit
+  margin: 0 0 28px auto
+  padding: 8px 12px
+
+.portfolio-drawer__content dl
+  display: grid
+  gap: 12px
+
+.portfolio-drawer__content dl div
+  display: grid
+  gap: 8px
+  grid-template-columns: 64px 1fr
+
+.portfolio-drawer__content dt
+  color: var(--portfolio-accent)
+  font-weight: 700
+
+.portfolio-drawer__content dd
+  margin: 0
+
+.portfolio-page-header
+  align-items: end
+  display: flex
+  gap: 24px
+  justify-content: space-between
+
+.portfolio-contact dl
+  display: grid
+  gap: 16px
+  margin-bottom: 0
+
+.portfolio-contact dl div
+  display: grid
+  gap: 6px
+  grid-template-columns: minmax(70px, auto) 1fr
+
+.portfolio-contact dt
+  color: var(--portfolio-accent)
+  font-weight: 700
+
+.portfolio-contact dd
+  margin: 0
+
+.portfolio-theme-toggle
+  bottom: 24px
+  position: fixed
+  right: 24px
+  z-index: 1100
+
+.post-body
+.post-title
+.post-excerpt
+  overflow-wrap: anywhere
+
+.post-body :where(img, video, iframe, svg, canvas)
+  height: auto
+  max-width: 100%
+
+.post-body pre
+  max-width: 100%
+  overflow-x: auto
+
+.post-body table
+  display: block
+  max-width: 100%
+  overflow-x: auto
+
+@media (max-width: 767px)
+  .main-inner.portfolio-shell
+    padding: 28px 16px 64px
+
+  .portfolio-page
+    gap: 42px
+
+  .portfolio-hero
+    grid-template-columns: 1fr
+
+  .portfolio-avatar
+    max-width: 128px
+
+  .portfolio-page-header
+    align-items: stretch
+    flex-direction: column
+
+  .portfolio-contact dl div
+    grid-template-columns: 1fr
+
+  .portfolio-theme-toggle
+    bottom: 16px
+    right: 16px
+
+  .portfolio-drawer
+    border-radius: 20px 20px 0 0
+    height: auto
+    inset: auto 0 0
+    max-height: 85dvh
+    width: 100%
+
+@media (prefers-reduced-motion: reduce)
+  html:focus-within
+    scroll-behavior: auto
+
+  body
+  body *
+    animation-duration: .01ms !important
+    animation-iteration-count: 1 !important
+    scroll-behavior: auto !important
+    transition-duration: .01ms !important

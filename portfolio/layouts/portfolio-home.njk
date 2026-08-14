@@ -1,0 +1,65 @@
+{% extends '_layout.njk' %}
+{# Shared UI is rendered through the registered portfolio component partial. #}
+
+{% set portfolio = site.data.portfolio %}
+{% set profile = portfolio.profile %}
+{% set featured = portfolio_achievements(portfolio.achievements, true, 3) %}
+{% set latestPosts = site.posts.sort('date', -1).limit(3).toArray() %}
+
+{% block title %}{{ profile.name }} | {{ title }}{% endblock %}
+{% block class %}portfolio-shell{% endblock %}
+
+{% block content %}
+<div class="portfolio-page" data-portfolio-page="home">
+  <section class="portfolio-hero portfolio-card" data-home-section="intro">
+    <div class="portfolio-avatar-wrap">
+      {% if profile.avatar %}
+        <img class="portfolio-avatar" src="{{ url_for(profile.avatar) }}" alt="{{ profile.name }}的头像">
+      {% else %}
+        <span class="portfolio-avatar portfolio-avatar--fallback" aria-hidden="true">{{ portfolio_initial(profile.name) }}</span>
+      {% endif %}
+    </div>
+    <div class="portfolio-hero__content">
+      <p class="portfolio-kicker">{{ profile.role }}</p>
+      <h1>{{ profile.name }}</h1>
+      <p class="portfolio-hero__tagline">{{ profile.tagline }}</p>
+      <p>{{ profile.summary }}</p>
+      <div class="portfolio-actions">
+        {{ partial('_partials/portfolio/component.njk', {component: 'action', href: '/resume/', label: '查看简历'}) }}
+        {{ partial('_partials/portfolio/component.njk', {component: 'action', href: '/blog/', label: '阅读博客', secondary: true}) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section" data-home-section="skills">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '能力', heading: '核心能力', description: '围绕工程交付建立可复用的技术能力。'}) }}
+    {{ partial('_partials/portfolio/component.njk', {component: 'tags', items: profile.skills}) }}
+  </section>
+
+  <section class="portfolio-section" data-home-section="achievements">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '作品', heading: '精选成果', description: '代表性文章、软件著作权与专利。'}) }}
+    <div class="portfolio-grid">
+      {% for item in featured %}{{ partial('_partials/portfolio/component.njk', {component: 'achievement', item: item, featured: true}) }}{% endfor %}
+    </div>
+    <div class="portfolio-section__action">{{ partial('_partials/portfolio/component.njk', {component: 'action', href: '/achievements/', label: '查看全部成果', secondary: true}) }}</div>
+  </section>
+
+  <section class="portfolio-section" data-home-section="posts">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '博客', heading: '最新文章', description: '近期发布的技术笔记与思考。'}) }}
+    <div class="portfolio-grid">
+      {% for post in latestPosts %}
+        <article class="portfolio-card portfolio-post-summary" data-latest-post>
+          <time datetime="{{ date_xml(post.date) }}">{{ date(post.date, 'YYYY-MM-DD') }}</time>
+          <h3><a href="{{ url_for(post.path) }}">{{ post.title }}</a></h3>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="portfolio-section__action">{{ partial('_partials/portfolio/component.njk', {component: 'action', href: '/blog/', label: '进入博客', secondary: true}) }}</div>
+  </section>
+
+  <section class="portfolio-section portfolio-card portfolio-contact-cta" data-home-section="contact">
+    {{ partial('_partials/portfolio/component.njk', {component: 'heading', kicker: '联系', heading: '一起交流', description: '在关于页面查看静态联系方式。'}) }}
+    {{ partial('_partials/portfolio/component.njk', {component: 'action', href: '/about/', label: '关于与联系'}) }}
+  </section>
+</div>
+{% endblock %}

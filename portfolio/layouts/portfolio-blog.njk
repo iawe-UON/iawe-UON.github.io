@@ -1,0 +1,37 @@
+{% extends '_layout.njk' %}
+
+{% block title %}博客 | {{ title }}{% endblock %}
+{% block class %}portfolio-shell{% endblock %}
+
+{% block content %}
+<div class="portfolio-page" data-portfolio-page="blog">
+  <header class="portfolio-page-header">
+    <div>
+      <p class="portfolio-kicker">Writing</p>
+      <h1>博客</h1>
+      <p>按发布时间浏览文章，标签可直接进入 Hexo 原生归档。</p>
+    </div>
+  </header>
+
+  <div class="portfolio-stack portfolio-blog-list">
+    {% for post in page.posts.toArray() %}
+      {% set summary = strip_html(post.excerpt or post.content) %}
+      <article class="portfolio-card portfolio-blog-card" data-blog-card>
+        <time data-blog-date="{{ date(post.date, 'YYYY-MM-DD') }}" datetime="{{ date_xml(post.date) }}">{{ date(post.date, 'YYYY-MM-DD') }}</time>
+        <h2><a href="{{ url_for(post.path) }}">{{ post.title }}</a></h2>
+        <p data-blog-summary>{{ truncate(summary, {length: 180}) }}</p>
+        {% if post.tags and post.tags.length %}
+          <ul class="portfolio-tags" aria-label="文章标签">
+            {% for tag in post.tags.toArray() %}
+              <li><a class="portfolio-tag" data-blog-tag href="{{ url_for(tag.path) }}">#{{ tag.name }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <a class="portfolio-blog-card__link" data-blog-detail href="{{ url_for(post.path) }}">阅读全文</a>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% include '_partials/pagination.njk' %}
+</div>
+{% endblock %}

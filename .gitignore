@@ -4,6 +4,8 @@ db.json
 *.log
 node_modules/
 public/
+.test-output/
+.test-output-fallback/
 .deploy*/
 _multiconfig.yml
 .worktrees/

@@ -1,0 +1,62 @@
+{% extends '_layout.njk' %}
+
+{% set achievements = portfolio_achievements(site.data.portfolio.achievements) %}
+
+{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+{% block class %}portfolio-shell{% endblock %}
+
+{% block content %}
+<div class="portfolio-page" data-portfolio-page="achievements" data-achievements-root>
+  <header class="portfolio-page-header">
+    <div>
+      <p class="portfolio-kicker">Portfolio</p>
+      <h1>成果</h1>
+      <p>按类型浏览文章、软件著作权与专利，点击卡片查看文字详情。</p>
+    </div>
+  </header>
+
+  <div class="portfolio-filters" role="group" aria-label="成果类型筛选">
+    <button class="portfolio-filter" type="button" data-achievement-filter="all" aria-pressed="true">全部</button>
+    <button class="portfolio-filter" type="button" data-achievement-filter="article" aria-pressed="false">文章</button>
+    <button class="portfolio-filter" type="button" data-achievement-filter="copyright" aria-pressed="false">软著</button>
+    <button class="portfolio-filter" type="button" data-achievement-filter="patent" aria-pressed="false">专利</button>
+  </div>
+
+  <div class="portfolio-grid" data-achievement-grid>
+    {% for item in achievements %}
+      <button class="portfolio-card portfolio-achievement-card" type="button"
+              data-achievement-card data-achievement-id="{{ item.id }}"
+              data-achievement-type="{{ item.type }}" aria-haspopup="dialog">
+        <span class="portfolio-card__meta">
+          <span class="portfolio-tag">{{ portfolio_achievement_type(item.type) }}</span>
+          <time>{{ item.date }}</time>
+        </span>
+        <strong class="portfolio-achievement-card__title">{{ item.title }}</strong>
+        <span>{{ item.summary }}</span>
+        <span class="portfolio-card__status">{{ item.status }}</span>
+      </button>
+
+      <template data-achievement-template="{{ item.id }}">
+        <article class="portfolio-achievement-detail">
+          <p class="portfolio-kicker">{{ portfolio_achievement_type(item.type) }}</p>
+          <h2>{{ item.title }}</h2>
+          <dl>
+            <div><dt>日期</dt><dd>{{ item.date }}</dd></div>
+            <div><dt>状态</dt><dd>{{ item.status }}</dd></div>
+            {% if item.role %}<div><dt>职责</dt><dd>{{ item.role }}</dd></div>{% endif %}
+          </dl>
+          <p>{{ item.summary }}</p>
+          {% if item.url %}<a class="portfolio-action" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">查看外部链接</a>{% endif %}
+        </article>
+      </template>
+    {% endfor %}
+  </div>
+
+  <p class="portfolio-card portfolio-empty" data-achievement-empty hidden>当前分类暂无成果。</p>
+
+  <dialog class="portfolio-drawer" data-achievement-dialog aria-label="成果详情">
+    <button class="portfolio-drawer__close" type="button" data-achievement-dialog-close aria-label="关闭成果详情">关闭</button>
+    <div class="portfolio-drawer__content" data-achievement-dialog-content></div>
+  </dialog>
+</div>
+{% endblock %}

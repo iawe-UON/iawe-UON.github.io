@@ -1,0 +1,75 @@
+# 示例占位数据：部署前请集中替换本文件中的姓名、简介、联系方式与履历。
+profile:
+  name: 示例姓名
+  role: 软件工程师 / 技术创作者
+  tagline: 用清晰的工程方法解决真实问题
+  summary: 这里是待替换的个人简介示例，用于说明专业方向、经验重点与长期关注的问题。
+  skills:
+    - 系统设计
+    - 后端开发
+    - 工程效率
+
+contact:
+  email: example@example.com
+  phone: 138-0000-0000
+
+resume:
+  # pdf: /files/resume.pdf
+  experience:
+    - title: 示例岗位
+      organization: 示例科技公司
+      period: 2024 — 至今
+      description: 负责示例业务的架构设计与交付，推动质量、性能和协作效率改进。
+  education:
+    - school: 示例大学
+      degree: 计算机相关专业 · 学士
+      period: 2020 — 2024
+      description: 主修软件工程、数据结构与计算机系统。
+  skillGroups:
+    - name: 工程能力
+      items:
+        - Java / Python
+        - 分布式系统
+        - CI/CD
+    - name: 协作能力
+      items:
+        - 技术方案
+        - 项目推进
+  projects:
+    - name: 示例核心项目
+      period: 2025
+      description: 以高内聚、低耦合的模块边界完成核心链路改造。
+      url: https://example.com/project
+
+achievements:
+  - id: example-article
+    type: article
+    title: 示例代表文章
+    date: '2026-05'
+    status: 已发表
+    summary: 面向实际工程问题的技术总结示例。
+    role: 独立作者
+    url: https://example.com/article
+    featured: true
+  - id: example-copyright
+    type: copyright
+    title: 示例软件著作权
+    date: '2025-11'
+    status: 已登记
+    summary: 面向团队协作场景的软件系统示例。
+    role: 主要开发者
+    featured: true
+  - id: example-patent
+    type: patent
+    title: 示例发明专利
+    date: '2025-08'
+    status: 审查中
+    summary: 一种提升系统处理效率的方法与装置示例。
+    featured: true
+  - id: example-article-secondary
+    type: article
+    title: 示例工程实践文章
+    date: '2025-03'
+    status: 已发表
+    summary: 记录一次从需求澄清到稳定交付的实践过程。
+    featured: false
